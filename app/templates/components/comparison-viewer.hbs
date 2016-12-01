@@ -1,6 +1,6 @@
 <div class="ComparisonViewer-header row">
   <div class="ComparisonViewer-title" title="{{comparison.headSnapshot.name}}">
-    <span>{{comparison.headSnapshot.name}}</span>
+    <a href={{comparisonUrl}} {{action "clickOnTitle"}}>{{comparison.headSnapshot.name}}</a>
   </div>
   <div class="ComparisonViewer-details">
     {{comparison-status comparison=comparison}}
@@ -14,19 +14,22 @@
         <div class="ComparisonViewer-halfColumn ComparisonViewer-halfColumn--left">
           {{#with comparison.baseScreenshot.lossyImage as |image|}}
             <div class="ComparisonViewer-pdiffImageBox" style="max-width: {{image.width}}px">
-              <img class="ComparisonViewer-pdiffImage" src="{{image.url}}">
+              {{image-with-reserved-space image=image imageClass="ComparisonViewer-pdiffImage"}}
             </div>
           {{/with}}
         </div>
         <div class="ComparisonViewer-halfColumn ComparisonViewer-halfColumn--right">
           {{#with comparison.headScreenshot.lossyImage as |lossyImage|}}
             <div class="ComparisonViewer-pdiffImageBox ComparisonViewer-pdiffImageBox--actionable" style="max-width: {{lossyImage.width}}px">
-              <img {{action "toggleOverlay" bubbles=false}} class="ComparisonViewer-pdiffImage ComparisonViewer-pdiffImage--actionable" src="{{lossyImage.url}}">
+              {{image-with-reserved-space action=(action "toggleOverlay") image=lossyImage imageClass="ComparisonViewer-pdiffImage ComparisonViewer-pdiffImage--actionable"}}
               {{#if isOverlayEnabled}}
                 {{#with comparison.pdiff.diffImage as |diffImage|}}
-                  <img {{action "toggleOverlay" bubbles=false}} class="ComparisonViewer-pdiffImageOverlay" src="{{diffImage.url}}">
+                  <div class="pdiffImageOverlay">
+                    {{image-with-reserved-space action=(action "toggleOverlay") image=diffImage imageClass="ComparisonViewer-pdiffImageOverlay"}}
+                  </div>
                 {{/with}}
               {{/if}}
+
             </div>
           {{/with}}
         </div>
@@ -54,7 +57,7 @@
           <div class="ComparisonViewer-halfColumn ComparisonViewer-halfColumn--right">
             {{#with comparison.headScreenshot.lossyImage as |image|}}
               <div class="ComparisonViewer-pdiffImageBox" style="max-width: {{image.width}}px">
-                <img class="ComparisonViewer-pdiffImage" src="{{image.url}}">
+                {{image-with-reserved-space image=image imageClass="ComparisonViewer-pdiffImage"}}
               </div>
             {{/with}}
           </div>
@@ -74,7 +77,7 @@
         <div class="ComparisonViewer-halfColumn ComparisonViewer-halfColumn--right">
           {{#with comparison.headScreenshot.lossyImage as |image|}}
             <div class="ComparisonViewer-pdiffImageBox" style="max-width: {{image.width}}px">
-              <img class="ComparisonViewer-pdiffImage" src="{{image.url}}">
+              {{image-with-reserved-space image=image imageClass="ComparisonViewer-pdiffImage"}}
             </div>
           {{/with}}
         </div>

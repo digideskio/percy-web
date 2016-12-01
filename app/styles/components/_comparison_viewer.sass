@@ -39,6 +39,10 @@
     border-top-right-radius: 2px
     display: flex
 
+    a,
+    a:hover
+      color: $default-text-color
+
     &.ComparisonViewer-header--actionable
       &:hover
         border: $grayborderhover
@@ -101,12 +105,13 @@
     position: relative
     border: 1px solid #eaeaea
     box-shadow: 0px 0px 5px #dadada
+    width: 100%
 
-    img
-      @include unselectable
-      display: block
+    .pdiffImageOverlay
+      position: absolute
+      top: 0
+      left: 0
       width: 100%
-      height: auto
 
   .ComparisonViewer-pdiffImageBox--actionable
     @include unselectable
