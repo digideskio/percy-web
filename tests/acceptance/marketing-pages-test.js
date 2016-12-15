@@ -33,4 +33,9 @@ describe('Acceptance: Marketing pages', function() {
     andThen(() => { expect(currentPath()).to.equal('terms'); });
     percySnapshot(this.test);
   });
+  it('can visit /security', function() {
+    visit('/security');
+    andThen(() => { expect(currentPath()).to.equal('security'); });
+    percySnapshot(this.test);
+  });
 });
